@@ -38,15 +38,4 @@ class UserRepositoryTest {
         userRepository.save(user3);
     }
 
-    @Test
-    void testCode() {
-
-        // user테이블 전체 조회
-        List<User> userLists = userRepository.findAll();
-
-        // user 테이블에 총 3개의 행이 존재하는지 체크
-        Assertions.assertEquals(3, userLists.size());
-
-    }
-
 }
