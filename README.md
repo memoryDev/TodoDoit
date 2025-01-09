@@ -11,6 +11,41 @@ dev.memory.TodoDoit
 └── util
 ```
 ---------------------------------------
+### url 구조
+1. /api/auth: 회원가입및 로그인
+2. /api/todos: Todo 관련기능
+
+**회원가입**
+| Method | URL | 설명 |
+|-------|----|-------|
+|POST|/api/auth/signup|일반 회원가입 처리|
+
+**로그인**
+| Method | URL | 설명 |
+|-------|----|-------|
+|POST|/api/auth/login|일반 로그인 처리|
+
+**소셜로그인**
+| Method | URL | 설명 |
+|-------|----|-------|
+|POST|/api/auth/social-login|소셜 로그인 처리|
+
+**비밀번호 찾기**
+| Method | URL | 설명 |
+|-------|----|-------|
+|POST|/api/auth/reset-password|비밀번호 재설정|
+
+**Todo API**
+| Method | URL | 설명 |
+|-------|----|-------|
+|GET|/api/todos|모든 Todo 조회|
+|POST|/api/todos|새로운 Todo 생성|
+|GET|/api/todos/{id}|특정 Todo 조회|
+|PUT|/api/todos/{id}|Todo 수정|
+|DELETE|/api/todos/{id}|Todo 삭제|
+
+
+---------------------------------------
 ## 1.config
 * 전역 설정 관련 클래스
 * 예시파일:
