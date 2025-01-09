@@ -7,9 +7,10 @@ import org.springframework.http.HttpStatus;
 public enum ErrorCode {
 
     /**
-     * testCode 추후 추가 예정
+     * 유저
      */
-    NOT_FUN(HttpStatus.NOT_FOUND, "T-001", "테스트코드입니다 추후삭제예정.");
+    ACCOUNT_ALREADY_EXISTS(HttpStatus.CONFLICT, "A-001", "계정이 이미 존재합니다"),
+    EMAIL_ALREADY_EXISTS(HttpStatus.CONFLICT, "A-002", "이메일이 이미 존재합니다");
 
     private final HttpStatus httpStatus;
     private final String errorCode;

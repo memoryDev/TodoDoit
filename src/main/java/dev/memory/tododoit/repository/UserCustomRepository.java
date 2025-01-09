@@ -1,4 +1,8 @@
 package dev.memory.tododoit.repository;
 
-public class UserCustomRepository {
+public interface UserCustomRepository  {
+
+    Boolean existsNotDeletedByAccountId(String accountId);
+
+    Boolean existsNotDeletedByEmail(String email);
 }

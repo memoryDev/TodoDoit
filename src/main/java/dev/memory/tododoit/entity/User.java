@@ -21,6 +21,13 @@ public class User extends BaseEntity {
         this.isDeleted = isDeleted;
     }
 
+    public User(String accountId, String email, String password) {
+        this.accountId = accountId;
+        this.email = email;
+        this.password = password;
+        this.isDeleted = Deleted.N;
+    }
+
     @Id
     @Comment(value = "사용자 고유 ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
