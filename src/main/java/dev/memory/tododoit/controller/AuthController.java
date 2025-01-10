@@ -20,6 +20,11 @@ public class AuthController {
 
     private final AuthService authService;
 
+    /**
+     * 일반 회원가입
+     * @param request: 회원 입력 값
+     * @return
+     */
     @PostMapping("/signup")
     public SuccessResponse<User> registerUser(@Valid @RequestBody UserSignupRequest request) {
         log.debug("AuthController.registerUser = {}", request);

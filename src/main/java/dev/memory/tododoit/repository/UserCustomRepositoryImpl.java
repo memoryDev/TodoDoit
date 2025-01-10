@@ -4,7 +4,6 @@ import com.querydsl.core.Tuple;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import dev.memory.tododoit.entity.Deleted;
 import dev.memory.tododoit.entity.QUser;
-import dev.memory.tododoit.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

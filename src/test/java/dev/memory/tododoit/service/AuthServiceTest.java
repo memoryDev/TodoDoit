@@ -1,56 +1,52 @@
 package dev.memory.tododoit.service;
 
 import dev.memory.tododoit.dto.UserSignupRequest;
-import dev.memory.tododoit.entity.Deleted;
-import dev.memory.tododoit.entity.Provider;
 import dev.memory.tododoit.entity.User;
-import dev.memory.tododoit.repository.UserCustomRepository;
 import dev.memory.tododoit.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
-@SpringBootTest
-@Transactional
 class AuthServiceTest {
 
-    @Autowired
+    @InjectMocks
+    private AuthService authService;
+
+    @Mock
     private UserRepository userRepository;
 
-    @Autowired
-    private AuthService authService;
-    @Autowired
-    private UserCustomRepository userCustomRepository;
+    @Mock
+    private BCryptPasswordEncoder passwordEncoder;
 
-    /**
-     * 테스트 실행전 더미데이터 생성
-     */
     @BeforeEach
     void setUp() {
-        User user1 = new User("account01", "account01@memory.dev", "password1",
-                Provider.KAKAO, "socialId01", Deleted.N);
-
-        User user2 = new User("account02", "account02@memory.dev", "password2",
-                Provider.KAKAO, "socialId02", Deleted.N);
-
-        User user3 = new User("account03", "account02@memory.dev", "password3",
-                Provider.KAKAO, "socialId03", Deleted.N);
-
-        userRepository.save(user1);
-        userRepository.save(user2);
-        userRepository.save(user3);
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    void registerUser () {
+    @DisplayName("회원가입 요청 정보")
+    void testRegisteruser_success() {
+        UserSignupRequest request = new UserSignupRequest("account01", "password01", "account1@memory.dev");
 
+        Mockito.when(passwordEncoder.encode(request.getPassword())).thenReturn("encodedPassword");
+        Mockito.when(userRepository.existsNotDeletedByAccountId("account01")).thenReturn(false);
+        Mockito.when(userRepository.existsNotDeletedByEmail("account1@memory.dev")).thenReturn(false);
 
-//        UserSignupRequest request = new UserSignupRequest("account04", "account04@memory.dev", "account04");
+        authService.registerUser(request);
 
-//        authService.registerUser(request);
+        Mockito.verify(userRepository, Mockito.times(1)).save(Mockito.any(User.class));
+
 
     }
+
+
 
 }
